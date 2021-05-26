@@ -28,7 +28,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       pdfSelectors: [],
       isFileDragged: false,
       generatingPdf: false,
-      fileName: ''
+      fileName: 'generated_pdf'
     };
     autoBindReact(this);
   }
@@ -76,6 +76,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
   }
 
   async generatePDF(): Promise<Uint8Array> {
+    if (this.state.fileName === '') {
+      alert('Choose filename');
+    }
     const pdfDocs: { [key: string]: PDFDocument } = {};
     const finalPDF = await PDFDocument.create();
     // adds pages to finalPDF
