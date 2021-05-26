@@ -72,12 +72,16 @@ export default class App extends React.Component<IAppProps, IAppState> {
     this.generatePDF().then((pdfBytes) => {
       this.downloadFile(pdfBytes);
       this.setState({ generatingPdf: false });
+    }, (reason) => {
+      if (reason === Error('Filename not chosen')) {
+        alert('Choose filename');
+      }
     });
   }
 
   async generatePDF(): Promise<Uint8Array> {
     if (this.state.fileName === '') {
-      alert('Choose filename');
+      throw new Error('Filename not chosen');
     }
     const pdfDocs: { [key: string]: PDFDocument } = {};
     const finalPDF = await PDFDocument.create();
