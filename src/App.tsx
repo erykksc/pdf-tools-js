@@ -5,9 +5,8 @@ import GenerateBtn from './GenerateBtn'
 import './App.css'
 import SelectorBar from './SelectorBar/SelectorBar';
 import autoBindReact from 'auto-bind/react';
-import { cloneDeep } from 'lodash';
 import PDFSelector from './PDFSelector';
-import * as ls from "local-storage";
+import { cloneDeep } from 'lodash';
 
 interface IAppProps {
 }
@@ -34,14 +33,6 @@ export default class App extends React.Component<IAppProps, IAppState> {
     autoBindReact(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      pdfs: ls.get('pdfFileReferences') || [],
-      pdfSelectors: ls.get('pdfSelectors') || [],
-      fileName: ls.get('pdfFileName')||'generatedPDF'
-    });
-  }
-
   handleDragStart(e: DragEvent<HTMLDivElement>) {
     this.setState({ isFileDragged: true });
   }
@@ -59,13 +50,11 @@ export default class App extends React.Component<IAppProps, IAppState> {
       }
     }
     this.setState({ pdfs: [...this.state.pdfs, file] });
-    ls.set('pdfFileReferences', [...this.state.pdfs, file]);
   }
 
   handleFileRemove(file: File) {
     // remove file from this.state.pdfs
     this.setState({ pdfs: this.state.pdfs.filter((pdf) => pdf.name !== file.name) });
-    ls.set('pdfFileReferences', this.state.pdfs.filter((pdf) => pdf.name !== file.name));
   }
 
   handleGeneratePDFButton() {
@@ -151,6 +140,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
   }
 
   handleSelectorMove(sel: PDFSelector, newIndex: number) {
+    // TODO
     const pdfSels = cloneDeep(this.state.pdfSelectors);
     const oldIndex = pdfSels.findIndex((x) => x.id === sel.id);
     if (newIndex <= oldIndex) {
