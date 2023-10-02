@@ -2,6 +2,7 @@ import { useState } from "react";
 import DangerButton from "./components/DangerButton";
 import DocSelector from "./components/DocSelector";
 import DropZone from "./components/DropZone";
+import LoadingOverlay from "./components/LoadingOverlay";
 import PrimaryButton from "./components/PrimaryButton";
 import TopBar from "./components/TopBar";
 import { clearDocSelectors, updateDocSelector } from "./redux/docSlice";
@@ -29,11 +30,9 @@ function App() {
   return (
     <div>
       <TopBar />
-      {isGeneratingPDF && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-        </div>
-      )}
+      {isGeneratingPDF &&
+        <LoadingOverlay />
+      }
       <main className="container mx-auto px-4 pt-10">
         <div className="flex flex-col items-center" >
           <div className="max-w-2xl">
