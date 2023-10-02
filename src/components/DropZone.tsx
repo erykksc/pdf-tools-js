@@ -1,8 +1,8 @@
+import { PDFDocument } from 'pdf-lib';
 import { useDropzone } from 'react-dropzone';
 import DocSelectorData from '../DocSelectorData';
 import { addDocSelector } from '../redux/docSlice';
 import { useAppDispatch } from '../redux/store';
-import { getPDFPageCount } from '../utils';
 
 
 function DropZone() {
@@ -14,11 +14,13 @@ function DropZone() {
         },
         maxFiles: 1,
         onDropAccepted: async (new_files) => {
-            const pageCount = await getPDFPageCount(new_files[0]);
+            const document = await PDFDocument.load(await new_files[0].arrayBuffer());
+            const pageCount = document.getPageCount()
             const payload: DocSelectorData = {
-                document: new_files[0],
+                document,
+                filename: new_files[0].name,
                 pageCount,
-                startPage: pageCount > 0 ? 1 : 0,
+                startPage: 1,
                 endPage: pageCount
             }
             dispatch(addDocSelector(payload));

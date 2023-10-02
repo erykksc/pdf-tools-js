@@ -34,7 +34,7 @@ function App() {
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
         </div>
       )}
-      <div className="container mx-auto px-4 pt-10">
+      <main className="container mx-auto px-4 pt-10">
         <div className="flex flex-col items-center" >
           <div className="max-w-2xl">
             {pdf.selectors.map((data, index) =>
@@ -69,7 +69,7 @@ function App() {
             </DangerButton>
           </div>
         </div>
-      </div>
+      </main>
     </div >
   )
 }

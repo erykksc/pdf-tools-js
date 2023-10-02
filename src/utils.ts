@@ -18,8 +18,7 @@ export async function combinePDFs(
 	// adds pages to finalPDF
 	for (const sel of selectors) {
 		// loads file if not already loaded
-		const pdfBytes = await sel.document.arrayBuffer();
-		const pdfDoc = await PDFDocument.load(pdfBytes);
+		const pdfDoc = sel.document;
 
 		const indices = [...Array(sel.endPage).keys()].slice(sel.startPage - 1);
 		const pagesToAdd = await finalPDF.copyPages(pdfDoc, indices);
@@ -31,7 +30,11 @@ export async function combinePDFs(
 	return finalPDFBytes;
 }
 
-export function downloadFile(filename: string, mimeType:string, pdfBytes: Uint8Array) {
+export function downloadFile(
+	filename: string,
+	mimeType: string,
+	pdfBytes: Uint8Array
+) {
 	// downloads the file
 	const blob = new Blob([pdfBytes], { type: mimeType });
 	const url = window.URL.createObjectURL(blob);

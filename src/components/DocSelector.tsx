@@ -8,7 +8,7 @@ export default function DocSelector(props: {
 }) {
     const [errorMsg, setErrorMsg] = useState<string>('');
 
-    const { document, startPage, endPage, pageCount } = props.data;
+    const { filename, startPage, endPage, pageCount } = props.data;
     const { onStartPageChange, onEndPageChange } = props;
 
     useEffect(() => {
@@ -51,7 +51,7 @@ export default function DocSelector(props: {
     return (
         <>
             <div className={`flex items-end space-x-4 rounded p-3 ${errorMsg === '' ? 'bg-gray-100' : 'bg-red-300'}`}>
-                <span className="grow w-full justify-center whitespace-normal break-all text-center" >{document.name}</span>
+                <span className="grow w-full justify-center whitespace-normal break-all text-center" >{filename}</span>
                 <div className="flex flex-col">
                     <label htmlFor="startPage" className="block font-medium text-gray-700 text-xs">Start page:</label>
                     <input
