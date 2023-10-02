@@ -1,6 +1,6 @@
 export default interface DocSelectorData {
 	document: File;
-	from: number;
-	to: number;
+	startPage: number;
+	endPage: number;
 	pageCount: number;
 }

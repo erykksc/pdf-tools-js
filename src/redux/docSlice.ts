@@ -17,13 +17,26 @@ export const docSlice = createSlice({
 				(selector) => selector !== action.payload
 			);
 		},
+		updateDocSelector: (
+			state,
+			action: PayloadAction<{ index: number; data: DocSelectorData }>
+		) => {
+			const { index, data } = action.payload;
+			const updatedSelectors = [...state.selectors];
+			updatedSelectors[index] = data;
+			state.selectors = updatedSelectors;
+		},
 		clearDocSelectors: (state) => {
 			state.selectors = [];
 		},
 	},
 });
 
-export const { addDocSelector, removeDocSelector, clearDocSelectors } =
-	docSlice.actions;
+export const {
+	addDocSelector,
+	removeDocSelector,
+	updateDocSelector,
+	clearDocSelectors,
+} = docSlice.actions;
 
 export default docSlice.reducer;
