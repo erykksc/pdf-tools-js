@@ -18,8 +18,8 @@ function App() {
   const handleGeneratePDFButton = () => {
     setIsGeneratingPDF(true);
     combinePDFs(pdf.selectors).then((pdfBytes) => {
-      downloadFile('combined.pdf', 'application/pdf', pdfBytes);
       setIsGeneratingPDF(false);
+      downloadFile('combined.pdf', 'application/pdf', pdfBytes);
     }, (reason) => {
       if (reason === Error('Filename not chosen')) {
         alert('Choose filename');
@@ -35,6 +35,8 @@ function App() {
       }
       <main className="container mx-auto px-4 pt-10">
         <div className="flex flex-col items-center" >
+
+          {/* SELECTORS */}
           <div className="max-w-2xl">
             {pdf.selectors.map((data, index) =>
               <div key={index}>
@@ -48,21 +50,24 @@ function App() {
             )}
           </div>
 
+          {/* DROP ZONE */}
           <DropZone />
           <div className="pb-5" />
+
+          {/* COMBINE BUTTON */}
           <PrimaryButton
             onClick={handleGeneratePDFButton}
             disabled={pdf.selectors.length === 0}
           >
-            Combine PDFs
+            {isGeneratingPDF ? 'Generating PDF...' : 'Combine PDFs'}
           </PrimaryButton>
           <div className="pb-3" />
 
-
+          {/* CLEAR BUTTON */}
           <div className="fixed bottom-3 left-3">
             <DangerButton
               onClick={() => dispatch(clearDocSelectors())}
-              disabled={pdf.selectors.length === 0}
+              disabled={pdf.selectors.length === 0 || isGeneratingPDF}
             >
               Clear
             </DangerButton>
