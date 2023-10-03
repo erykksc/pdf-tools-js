@@ -10,25 +10,30 @@ import LoadingOverlay from './LoadingOverlay';
 function DropZone() {
     const dispatch = useAppDispatch();
     const [isLoadingDoc, setIsLoadingDoc] = useState(false);
+    const [idCounter, setIdCounter] = useState(1);
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
             'application/pdf': ['.pdf']
         },
-        maxFiles: 1,
-        onDropAccepted: async (new_files) => {
+        onDropAccepted: async (newFiles) => {
             setIsLoadingDoc(true);
-            const document = await PDFDocument.load(await new_files[0].arrayBuffer());
-            const pageCount = document.getPageCount()
-            const payload: DocSelectorData = {
-                document,
-                filename: new_files[0].name,
-                pageCount,
-                startPage: 1,
-                endPage: pageCount
+            for (let i = 0; i < newFiles.length; i++) {
+                const newFile = newFiles[i];
+                const document = await PDFDocument.load(await newFile.arrayBuffer());
+                const pageCount = document.getPageCount()
+                const payload: DocSelectorData = {
+                    id: idCounter + i,
+                    document,
+                    filename: newFile.name,
+                    pageCount,
+                    startPage: 1,
+                    endPage: pageCount
+                }
+                dispatch(addDocSelector(payload));
             }
+            setIdCounter(idCounter + newFiles.length);
             setIsLoadingDoc(false);
-            dispatch(addDocSelector(payload));
         },
     });
 

@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { List } from 'react-movable';
 import DangerButton from "./components/DangerButton";
-import DocSelector from "./components/DocSelector";
 import DropZone from "./components/DropZone";
 import LoadingOverlay from "./components/LoadingOverlay";
 import PrimaryButton from "./components/PrimaryButton";
 import TopBar from "./components/TopBar";
-import { clearDocSelectors, updateDocSelector } from "./redux/docSlice";
+import { clearDocSelectors, reorderDocSelectors, updateDocSelector } from "./redux/docSlice";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { combinePDFs, downloadFile } from "./utils";
+import DocSelector from "./components/DocSelector";
 
 function App() {
   const pdf = useAppSelector(state => state.pdf);
@@ -37,18 +38,16 @@ function App() {
         <div className="flex flex-col items-center" >
 
           {/* SELECTORS */}
-          <div className="max-w-2xl">
-            {pdf.selectors.map((data, index) =>
-              <div key={index}>
-                <DocSelector
-                  data={data}
-                  onStartPageChange={(startPage) => dispatch(updateDocSelector({ index, data: { ...data, startPage } }))}
-                  onEndPageChange={(endPage) => dispatch(updateDocSelector({ index, data: { ...data, endPage } }))}
-                />
-                <div className="pb-3" />
-              </div>
-            )}
-          </div>
+          <List
+            values={pdf.selectors}
+            onChange={({ oldIndex, newIndex }) => dispatch(reorderDocSelectors({ oldIndex, newIndex }))}
+            renderList={({ children, props }) => <div {...props} className="max-w-2xl" > {children}</div>}
+            renderItem={({ value, props }) => <div {...props} className='pb-3'><DocSelector
+              data={value}
+              onStartPageChange={(startPage) => dispatch(updateDocSelector({ ...value, startPage }))}
+              onEndPageChange={(endPage) => dispatch(updateDocSelector({ ...value, endPage }))}
+            /></div>}
+          />
 
           {/* DROP ZONE */}
           <DropZone />
@@ -73,7 +72,7 @@ function App() {
             </DangerButton>
           </div>
         </div>
-      </main>
+      </main >
     </div >
   )
 }
