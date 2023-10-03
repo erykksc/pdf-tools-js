@@ -1,6 +1,8 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
+import englishTranslations from "./locales/en/translations.json";
+import polishTranslations from "./locales/pl/translations.json";
 
 i18n.use(LanguageDetector)
 	.use(initReactI18next)
@@ -15,10 +17,10 @@ i18n.use(LanguageDetector)
 		},
 		resources: {
 			en: {
-				translations: await import("./locales/en/translations.json"),
+				translations: englishTranslations,
 			},
 			pl: {
-				translations: await import("./locales/pl/translations.json"),
+				translations: polishTranslations,
 			},
 		},
 		ns: ["translations"],
