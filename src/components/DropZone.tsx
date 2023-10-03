@@ -10,7 +10,6 @@ import LoadingOverlay from './LoadingOverlay';
 function DropZone() {
     const dispatch = useAppDispatch();
     const [isLoadingDoc, setIsLoadingDoc] = useState(false);
-    const [idCounter, setIdCounter] = useState(1);
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
@@ -23,7 +22,6 @@ function DropZone() {
                 const document = await PDFDocument.load(await newFile.arrayBuffer());
                 const pageCount = document.getPageCount()
                 const payload: DocSelectorData = {
-                    id: idCounter + i,
                     document,
                     filename: newFile.name,
                     pageCount,
@@ -32,7 +30,6 @@ function DropZone() {
                 }
                 dispatch(addDocSelector(payload));
             }
-            setIdCounter(idCounter + newFiles.length);
             setIsLoadingDoc(false);
         },
     });

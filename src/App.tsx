@@ -56,7 +56,10 @@ function App() {
           {/* COMBINE BUTTON */}
           <PrimaryButton
             onClick={handleGeneratePDFButton}
-            disabled={pdf.selectors.length === 0}
+            disabled={
+              isGeneratingPDF ||
+              pdf.selectors.length === 0 ||
+              pdf.selectors.every((selector) => selector.errorMsg !== undefined)}
           >
             {isGeneratingPDF ? 'Generating PDF...' : 'Combine PDFs'}
           </PrimaryButton>

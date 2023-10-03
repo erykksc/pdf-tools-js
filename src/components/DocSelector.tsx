@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MdContentCopy, MdOutlineDragIndicator } from 'react-icons/md';
 import DocSelectorData from "../DocSelectorData";
-import { addDocSelector } from "../redux/docSlice";
+import { addDocSelector, updateDocSelector } from "../redux/docSlice";
 import { useAppDispatch } from "../redux/store";
 
 export default function DocSelector(props: {
@@ -9,32 +9,35 @@ export default function DocSelector(props: {
     onStartPageChange: (new_value: number) => void,
     onEndPageChange: (new_value: number) => void,
 }) {
-    const [errorMsg, setErrorMsg] = useState<string>('');
     const dispatch = useAppDispatch();
 
-    const { filename, startPage, endPage, pageCount } = props.data;
+    const { filename, startPage, endPage, pageCount, errorMsg } = props.data;
     const { onStartPageChange, onEndPageChange } = props;
 
     useEffect(() => {
+        let newErrorMsg: string | undefined = undefined;
         // start page validation
         if (startPage < 1 && startPage !== -1)
-            setErrorMsg('Start page must be greater than 0');
+            newErrorMsg = 'Start page must be greater than 0';
         else if (startPage > pageCount)
-            setErrorMsg('Start page can\'t be greater than page count');
+            newErrorMsg = 'Start page can\'t be greater than page count';
         else if (startPage > endPage)
-            setErrorMsg('Start page can\'t be greater than end page');
+            newErrorMsg = 'Start page can\'t be greater than end page';
         // end page validation
         else if (endPage < 1 && endPage !== -1)
-            setErrorMsg('End page must be greater than 0');
+            newErrorMsg = 'End page must be greater than 0';
         else if (endPage > pageCount)
-            setErrorMsg('End page can\'t be greater than page count');
-        else
-            setErrorMsg('');
-    }, [startPage, endPage, pageCount])
+            newErrorMsg = 'End page can\'t be greater than page count';
+
+        // If error message changed, update it
+        if (newErrorMsg !== errorMsg)
+            dispatch(updateDocSelector({ ...props.data, errorMsg: newErrorMsg }));
+    }, [dispatch, filename, startPage, endPage, pageCount, errorMsg, props.data])
 
     const handleStartPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === '') {
-            setErrorMsg('');
+            if (errorMsg)
+                dispatch(updateDocSelector({ ...props.data, errorMsg: '' }));
             return onStartPageChange(-1);
         }
         const newValue = Number.parseInt(event.target.value);
@@ -44,7 +47,8 @@ export default function DocSelector(props: {
 
     const handleEndPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === '') {
-            setErrorMsg('');
+            if (errorMsg)
+                dispatch(updateDocSelector({ ...props.data, errorMsg: '' }));
             return onEndPageChange(-1);
         }
         const newValue = Number.parseInt(event.target.value);
@@ -54,12 +58,12 @@ export default function DocSelector(props: {
 
     const handleOnCopyClick = () => {
         // copy props data to new object
-        dispatch(addDocSelector({ ...props.data }));
+        dispatch(addDocSelector({ ...props.data, id: undefined }));
     }
 
     return (
         <>
-            <div className={`cursor-move grab flex items-center space-x-4 rounded px-3 py-2 ${errorMsg === '' ? 'bg-gray-100' : 'bg-red-300'}`}>
+            <div className={`cursor-move grab flex items-center space-x-4 rounded px-3 py-2 ${errorMsg === undefined ? 'bg-gray-100' : 'bg-red-300'}`}>
                 <div>
                     <MdOutlineDragIndicator size={20} />
                 </div>
