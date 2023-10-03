@@ -6,8 +6,8 @@ import { useAppDispatch } from "../redux/store";
 
 export default function DocSelector(props: {
     data: DocSelectorData,
-    onStartPageChange: (new_value: number) => void,
-    onEndPageChange: (new_value: number) => void,
+    onStartPageChange: (new_value?: number) => void,
+    onEndPageChange: (new_value?: number) => void,
 }) {
     const dispatch = useAppDispatch();
 
@@ -16,18 +16,22 @@ export default function DocSelector(props: {
 
     useEffect(() => {
         let newErrorMsg: string | undefined = undefined;
-        // start page validation
-        if (startPage < 1 && startPage !== -1)
-            newErrorMsg = 'Start page must be greater than 0';
-        else if (startPage > pageCount)
-            newErrorMsg = 'Start page can\'t be greater than page count';
-        else if (startPage > endPage)
-            newErrorMsg = 'Start page can\'t be greater than end page';
-        // end page validation
-        else if (endPage < 1 && endPage !== -1)
-            newErrorMsg = 'End page must be greater than 0';
-        else if (endPage > pageCount)
-            newErrorMsg = 'End page can\'t be greater than page count';
+        // start page validation, if defined
+        if (startPage) {
+            if (startPage < 1)
+                newErrorMsg = 'Start page must be greater than 0';
+            else if (startPage > pageCount)
+                newErrorMsg = 'Start page can\'t be greater than page count';
+            else if (endPage && startPage > endPage)
+                newErrorMsg = 'Start page can\'t be greater than end page';
+        }
+        // end page validation, if defined
+        if (endPage) {
+            if (endPage < 1)
+                newErrorMsg = 'End page must be greater than 0';
+            else if (endPage > pageCount)
+                newErrorMsg = 'End page can\'t be greater than page count';
+        }
 
         // If error message changed, update it
         if (newErrorMsg !== errorMsg)
@@ -38,7 +42,7 @@ export default function DocSelector(props: {
         if (event.target.value === '') {
             if (errorMsg)
                 dispatch(updateDocSelector({ ...props.data, errorMsg: '' }));
-            return onStartPageChange(-1);
+            return onStartPageChange(undefined);
         }
         const newValue = Number.parseInt(event.target.value);
 
@@ -49,7 +53,7 @@ export default function DocSelector(props: {
         if (event.target.value === '') {
             if (errorMsg)
                 dispatch(updateDocSelector({ ...props.data, errorMsg: '' }));
-            return onEndPageChange(-1);
+            return onEndPageChange(undefined);
         }
         const newValue = Number.parseInt(event.target.value);
 
@@ -75,7 +79,7 @@ export default function DocSelector(props: {
                         name="startPage"
                         placeholder="1"
                         min={1}
-                        value={startPage !== -1 ? startPage : ''}
+                        value={startPage}
                         onChange={handleStartPageChange}
                         className="text-center w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
@@ -87,7 +91,7 @@ export default function DocSelector(props: {
                         name="endPage"
                         placeholder={pageCount.toString()}
                         min={1}
-                        value={endPage !== -1 ? endPage : ''}
+                        value={endPage}
                         onChange={handleEndPageChange}
                         className="text-center w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />

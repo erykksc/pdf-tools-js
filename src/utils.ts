@@ -19,8 +19,11 @@ export async function combinePDFs(
 	for (const sel of selectors) {
 		// loads file if not already loaded
 		const pdfDoc = sel.document;
+		const startPage = sel.startPage ?? 1;
+		const endPage = sel.endPage ?? sel.pageCount;
 
-		const indices = [...Array(sel.endPage).keys()].slice(sel.startPage - 1);
+		// copies pages from pdfDoc to finalPDF
+		const indices = [...Array(endPage).keys()].slice(startPage - 1);
 		const pagesToAdd = await finalPDF.copyPages(pdfDoc, indices);
 		for (const page of pagesToAdd) {
 			finalPDF.addPage(page);

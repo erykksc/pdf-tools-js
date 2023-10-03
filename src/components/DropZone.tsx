@@ -25,8 +25,6 @@ function DropZone() {
                     document,
                     filename: newFile.name,
                     pageCount,
-                    startPage: 1,
-                    endPage: pageCount
                 }
                 dispatch(addDocSelector(payload));
             }
