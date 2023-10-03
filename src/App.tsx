@@ -1,18 +1,22 @@
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { List } from 'react-movable';
 import DangerButton from "./components/DangerButton";
+import DocSelector from "./components/DocSelector";
 import DropZone from "./components/DropZone";
+import LanguageButton from "./components/LanguageButton";
 import LoadingOverlay from "./components/LoadingOverlay";
 import PrimaryButton from "./components/PrimaryButton";
 import TopBar from "./components/TopBar";
 import { clearDocSelectors, reorderDocSelectors, updateDocSelector } from "./redux/docSlice";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { combinePDFs, downloadFile } from "./utils";
-import DocSelector from "./components/DocSelector";
+
 
 function App() {
   const pdf = useAppSelector(state => state.pdf);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
@@ -21,11 +25,7 @@ function App() {
     combinePDFs(pdf.selectors).then((pdfBytes) => {
       setIsGeneratingPDF(false);
       downloadFile('combined.pdf', 'application/pdf', pdfBytes);
-    }, (reason) => {
-      if (reason === Error('Filename not chosen')) {
-        alert('Choose filename');
-      }
-    });
+    }, alert);
   }
 
   return (
@@ -61,7 +61,7 @@ function App() {
               pdf.selectors.length === 0 ||
               pdf.selectors.every((selector) => selector.errorMsg !== undefined)}
           >
-            {isGeneratingPDF ? 'Generating PDF...' : 'Combine PDFs'}
+            {isGeneratingPDF ? t('generatingPDF') : t('combinePDFs')}
           </PrimaryButton>
           <div className="pb-3" />
 
@@ -71,8 +71,13 @@ function App() {
               onClick={() => dispatch(clearDocSelectors())}
               disabled={pdf.selectors.length === 0 || isGeneratingPDF}
             >
-              Clear
+              {t('clear')}
             </DangerButton>
+          </div>
+
+          {/* Language Button */}
+          <div className='fixed bottom-3 right-3'>
+            <LanguageButton />
           </div>
         </div>
       </main >

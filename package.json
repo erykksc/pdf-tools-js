@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",
+    "i18next": "^23.5.1",
+    "i18next-browser-languagedetector": "^7.1.0",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-i18next": "^13.2.2",
     "react-icons": "^4.11.0",
     "react-movable": "^3.0.4",
     "react-redux": "^8.1.3"

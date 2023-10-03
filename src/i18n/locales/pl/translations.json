@@ -1,0 +1,10 @@
+{
+    "generatingPDF": "Generowanie pliku PDF...",
+    "combinePDFs": "Połącz PDFy",
+    "clear": "Wyczyść",
+    "startPage": "Pierwsza Strona",
+    "endPage": "Ostatnia Strona",
+    "dropZone": "Drag 'n' drop PDF files here, or click to select files",
+    "onlyPDF": "Tylko pliki PDF są dozwolone",
+    "createdBy": "Stworzone przez"
+}
