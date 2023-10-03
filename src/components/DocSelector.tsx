@@ -73,10 +73,11 @@ export default function DocSelector(props: {
                     <input
                         type="number"
                         name="startPage"
+                        placeholder="1"
                         min={1}
                         value={startPage !== -1 ? startPage : ''}
                         onChange={handleStartPageChange}
-                        className="w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
+                        className="text-center w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
                 </div>
                 <div className="flex flex-col">
@@ -84,10 +85,11 @@ export default function DocSelector(props: {
                     <input
                         type="number"
                         name="endPage"
+                        placeholder={pageCount.toString()}
                         min={1}
                         value={endPage !== -1 ? endPage : ''}
                         onChange={handleEndPageChange}
-                        className="w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
+                        className="text-center w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
                 </div>
                 <button className='p-2 rounded' onClick={handleOnCopyClick}>
