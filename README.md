@@ -1,27 +1,29 @@
-# React + TypeScript + Vite
+# PDF Tools JS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PDF Tools JS is a web app built with React and Vite that allows you to merge, cut, and join PDF files. It uses the [pdf-lib](https://github.com/Hopding/pdf-lib) library to manipulate PDF files in the browser.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started with PDF Tools, follow these steps:
 
-## Expanding the ESLint configuration
+1. Clone the repository:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```shell
+git clone https://github.com/eroar/pdf-tools-js.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Install the dependencies:
+```shell
+cd pdf-tools
+npm install
+```
+
+3. Start the development server:
+```shell
+npm run dev
+```
+This will start the Vite development server and open the app in your default browser.npm run dev
+
+## License
+
+PDF Tools JS is licensed under [MIT License](./LICENSE.txt)
