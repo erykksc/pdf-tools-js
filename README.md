@@ -22,7 +22,7 @@ npm install
 ```shell
 npm run dev
 ```
-This will start the Vite development server and open the app in your default browser.npm run dev
+This will start the Vite development server and open the app in your default browser.
 
 ## License
 
