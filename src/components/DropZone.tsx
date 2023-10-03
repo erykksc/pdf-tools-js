@@ -5,9 +5,11 @@ import DocSelectorData from '../DocSelectorData';
 import { addDocSelector } from '../redux/docSlice';
 import { useAppDispatch } from '../redux/store';
 import LoadingOverlay from './LoadingOverlay';
+import { useTranslation } from 'react-i18next';
 
 
 function DropZone() {
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const [isLoadingDoc, setIsLoadingDoc] = useState(false);
 
@@ -42,8 +44,8 @@ function DropZone() {
                 })}
             >
                 <input {...getInputProps()} />
-                <p className="text-lg font-medium mb-2">Drag 'n' drop files here, or click to select files</p>
-                <p className="text-gray-500">Only PDF files are allowed</p>
+                <p className="text-lg font-medium mb-2">{t('dropZone')}</p>
+                <p className="text-gray-500">{t('onlyPDF')}</p>
             </div>
         </section>
     );

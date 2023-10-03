@@ -1,0 +1,10 @@
+{
+    "generatingPDF": "Generating PDF...",
+    "combinePDFs": "Combine PDFs",
+    "clear": "Clear",
+    "startPage": "Start Page",
+    "endPage": "End Page",
+    "dropZone": "Drag 'n' drop PDF files here, or click to select files",
+    "onlyPDF": "Only PDF files are allowed",
+    "createdBy": "Created by"
+}
