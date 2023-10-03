@@ -10,6 +10,8 @@ export const docSlice = createSlice({
 	initialState,
 	reducers: {
 		addDocSelector: (state, action: PayloadAction<DocSelectorData>) => {
+			if (action.payload.id === undefined)
+				action.payload.id = state.selectors.length;
 			state.selectors.push(action.payload);
 		},
 		removeDocSelector: (state, action: PayloadAction<DocSelectorData>) => {

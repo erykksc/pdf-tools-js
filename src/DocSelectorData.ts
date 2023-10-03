@@ -1,7 +1,7 @@
 import { PDFDocument } from "pdf-lib";
 
 export default interface DocSelectorData {
-	id:number;
+	id: number | undefined; // undefined for new selectors, is set by the reducer
 	document: PDFDocument;
 	filename: string;
 	startPage: number;

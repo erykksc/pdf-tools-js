@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { MdContentCopy, MdOutlineDragIndicator } from 'react-icons/md';
 import DocSelectorData from "../DocSelectorData";
+import { addDocSelector } from "../redux/docSlice";
+import { useAppDispatch } from "../redux/store";
 
 export default function DocSelector(props: {
     data: DocSelectorData,
@@ -7,6 +10,7 @@ export default function DocSelector(props: {
     onEndPageChange: (new_value: number) => void,
 }) {
     const [errorMsg, setErrorMsg] = useState<string>('');
+    const dispatch = useAppDispatch();
 
     const { filename, startPage, endPage, pageCount } = props.data;
     const { onStartPageChange, onEndPageChange } = props;
@@ -48,9 +52,17 @@ export default function DocSelector(props: {
         onEndPageChange(newValue);
     }
 
+    const handleOnCopyClick = () => {
+        // copy props data to new object
+        dispatch(addDocSelector({ ...props.data }));
+    }
+
     return (
         <>
-            <div className={`flex items-end space-x-4 rounded p-3 ${errorMsg === '' ? 'bg-gray-100' : 'bg-red-300'}`}>
+            <div className={`cursor-move grab flex items-center space-x-4 rounded px-3 py-2 ${errorMsg === '' ? 'bg-gray-100' : 'bg-red-300'}`}>
+                <div>
+                    <MdOutlineDragIndicator size={20} />
+                </div>
                 <span className="grow w-full justify-center whitespace-normal break-all text-center" >{filename}</span>
                 <div className="flex flex-col">
                     <label htmlFor="startPage" className="block font-medium text-gray-700 text-xs">Start page:</label>
@@ -74,6 +86,9 @@ export default function DocSelector(props: {
                         className="w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
                 </div>
+                <button className='p-2 rounded' onClick={handleOnCopyClick}>
+                    <MdContentCopy size={20} />
+                </button>
             </div >
             <span className="flex justify-center text-sm">{errorMsg}</span>
         </>
