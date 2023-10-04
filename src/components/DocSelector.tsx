@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { MdContentCopy, MdOutlineDragIndicator } from 'react-icons/md';
+import { MdContentCopy, MdDeleteOutline, MdOutlineDragIndicator } from 'react-icons/md';
 import DocSelectorData from "../DocSelectorData";
-import { addDocSelector, updateDocSelector } from "../redux/docSlice";
+import { addDocSelector, removeDocSelector, updateDocSelector } from "../redux/docSlice";
 import { useAppDispatch } from "../redux/store";
 
 export default function DocSelector(props: {
@@ -98,6 +98,12 @@ export default function DocSelector(props: {
                 </div>
                 <button className='p-2 rounded' onClick={handleOnCopyClick}>
                     <MdContentCopy size={20} />
+                </button>
+                <button
+                    className='p-2 text-red-500'
+                    onClick={() => dispatch(removeDocSelector(props.data))}
+                >
+                    <MdDeleteOutline size={25} />
                 </button>
             </div >
             <span className="flex justify-center text-sm">{errorMsg}</span>

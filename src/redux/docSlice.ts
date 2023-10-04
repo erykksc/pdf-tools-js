@@ -16,7 +16,7 @@ export const docSlice = createSlice({
 		},
 		removeDocSelector: (state, action: PayloadAction<DocSelectorData>) => {
 			state.selectors = state.selectors.filter(
-				(selector) => selector !== action.payload
+				(selector) => selector.id !== action.payload.id
 			);
 		},
 		updateDocSelector: (state, action: PayloadAction<DocSelectorData>) => {
