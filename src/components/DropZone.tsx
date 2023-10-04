@@ -40,7 +40,7 @@ function DropZone() {
 
             <div
                 {...getRootProps({
-                    className: 'border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 h-full',
+                    className: 'border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 h-full',
                 })}
             >
                 <input {...getInputProps()} />

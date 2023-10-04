@@ -67,13 +67,13 @@ export default function DocSelector(props: {
 
     return (
         <>
-            <div className={`cursor-move grab flex items-center space-x-4 rounded px-3 py-2 ${errorMsg === undefined ? 'bg-gray-100' : 'bg-red-300'}`}>
+            <div className={`text-black dark:text-white cursor-move grab flex items-center space-x-4 rounded px-3 py-2 ${errorMsg === undefined ? 'bg-gray-100 dark:bg-gray-600' : 'bg-red-300 dark:bg-red-400'}`}>
                 <div>
                     <MdOutlineDragIndicator size={20} />
                 </div>
                 <span className="grow w-full justify-center whitespace-normal break-all text-center" >{filename}</span>
                 <div className="flex flex-col">
-                    <label htmlFor="startPage" className="block font-medium text-gray-700 text-xs">Start page:</label>
+                    <label htmlFor="startPage" className="block font-medium text-gray-700 dark:text-white text-xs">Start page:</label>
                     <input
                         type="number"
                         name="startPage"
@@ -81,11 +81,11 @@ export default function DocSelector(props: {
                         min={1}
                         value={startPage}
                         onChange={handleStartPageChange}
-                        className="text-center w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
+                        className="text-center dark:text-black w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
                 </div>
                 <div className="flex flex-col">
-                    <label htmlFor="endPage" className="block font-medium text-gray-700 text-xs">End page:</label>
+                    <label htmlFor="endPage" className="block font-medium text-gray-700 dark:text-white text-xs">End page:</label>
                     <input
                         type="number"
                         name="endPage"
@@ -93,14 +93,14 @@ export default function DocSelector(props: {
                         min={1}
                         value={endPage}
                         onChange={handleEndPageChange}
-                        className="text-center w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
+                        className="text-center dark:text-black w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
                 </div>
                 <button className='p-2 rounded' onClick={handleOnCopyClick}>
                     <MdContentCopy size={20} />
                 </button>
                 <button
-                    className='p-2 text-red-500'
+                    className={`p-2 text-red-500 ` + (errorMsg !== undefined ? 'dark:text-black' : '')}
                     onClick={() => dispatch(removeDocSelector(props.data))}
                 >
                     <MdDeleteOutline size={25} />

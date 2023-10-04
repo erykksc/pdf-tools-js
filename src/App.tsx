@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='min-h-screen dark:bg-gray-900 dark:text-white'>
       <TopBar />
       {isGeneratingPDF &&
         <LoadingOverlay />
