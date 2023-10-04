@@ -17,7 +17,7 @@ export default function DocSelector(props: {
     useEffect(() => {
         let newErrorMsg: string | undefined = undefined;
         // start page validation, if defined
-        if (startPage) {
+        if (startPage !== undefined) {
             if (startPage < 1)
                 newErrorMsg = 'Start page must be greater than 0';
             else if (startPage > pageCount)
@@ -26,7 +26,7 @@ export default function DocSelector(props: {
                 newErrorMsg = 'Start page can\'t be greater than end page';
         }
         // end page validation, if defined
-        if (endPage) {
+        if (endPage !== undefined) {
             if (endPage < 1)
                 newErrorMsg = 'End page must be greater than 0';
             else if (endPage > pageCount)
