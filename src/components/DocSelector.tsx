@@ -39,23 +39,23 @@ export default function DocSelector(props: {
     }, [dispatch, filename, startPage, endPage, pageCount, errorMsg, props.data])
 
     const handleStartPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value === '') {
+        const newValue = event.target.valueAsNumber;
+        if (isNaN(newValue)) {
             if (errorMsg)
                 dispatch(updateDocSelector({ ...props.data, errorMsg: '' }));
             return onStartPageChange(undefined);
         }
-        const newValue = Number.parseInt(event.target.value);
 
         onStartPageChange(newValue);
     }
 
     const handleEndPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value === '') {
+        const newValue = event.target.valueAsNumber;
+        if (isNaN(newValue)) {
             if (errorMsg)
                 dispatch(updateDocSelector({ ...props.data, errorMsg: '' }));
             return onEndPageChange(undefined);
         }
-        const newValue = Number.parseInt(event.target.value);
 
         onEndPageChange(newValue);
     }
@@ -79,7 +79,7 @@ export default function DocSelector(props: {
                         name="startPage"
                         placeholder="1"
                         min={1}
-                        value={startPage}
+                        value={startPage ?? ''}
                         onChange={handleStartPageChange}
                         className="text-center dark:text-black w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
@@ -91,7 +91,7 @@ export default function DocSelector(props: {
                         name="endPage"
                         placeholder={pageCount.toString()}
                         min={1}
-                        value={endPage}
+                        value={endPage ?? ''}
                         onChange={handleEndPageChange}
                         className="text-center dark:text-black w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
                     />
