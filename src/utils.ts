@@ -12,7 +12,7 @@ export async function getPDFPageCount(pdf: File): Promise<number> {
 }
 
 export async function combinePDFs(
-	selectors: DocSelectorData[]
+	selectors: DocSelectorData[],
 ): Promise<Uint8Array> {
 	const finalPDF = await PDFDocument.create();
 	// adds pages to finalPDF
@@ -36,7 +36,7 @@ export async function combinePDFs(
 export function downloadFile(
 	filename: string,
 	mimeType: string,
-	pdfBytes: Uint8Array
+	pdfBytes: Uint8Array,
 ) {
 	// downloads the file
 	const blob = new Blob([pdfBytes], { type: mimeType });
