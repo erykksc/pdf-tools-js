@@ -1,4 +1,4 @@
-FROM node:24-alpine AS BUILDER
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
@@ -12,6 +12,6 @@ FROM nginx:alpine
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=BUILDER /app/dist /usr/share/nginx/html/
+COPY --from=builder /app/dist /usr/share/nginx/html/
 
 EXPOSE 80
