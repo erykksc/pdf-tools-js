@@ -5,10 +5,10 @@ const LanguageButton = () => {
 
     return (
         <button
-            onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'pl' : 'en')}
+            onClick={() => i18n.changeLanguage(i18n.resolvedLanguage === 'en' ? 'pl' : 'en')}
             className='text-3xl bg-sky-300 hover:bg-sky-500 rounded-full w-14 h-14 '
         >
-            {i18n.language !== 'en' ? '🇬🇧' : '🇵🇱'}
+            {i18n.resolvedLanguage === 'en' ? '🇬🇧' : '🇵🇱'}
         </button>
     )
 }
