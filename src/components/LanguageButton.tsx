@@ -13,7 +13,7 @@ const LanguageButton = () => {
 			className="text-3xl bg-sky-300 hover:bg-sky-500 rounded-full w-14 h-14 "
 			title={t("Change language")}
 		>
-			{i18n.resolvedLanguage === "en" ? "🇬🇧" : "🇵🇱"}
+			{i18n.resolvedLanguage === "en" ? "🇵🇱" : "🇬🇧"}
 		</button>
 	);
 };
