@@ -21,7 +21,7 @@ Run this tool on port 8000 using Docker:
 docker run -p 8000:80 ghcr.io/erykksc/pdf-tools-js:latest
 ```
 
-Go to [localhost:8000](localhost:8000) in your browser and start cutting, merging, splitting and more on your PDFs!
+Go to [http://localhost:8000](http://localhost:8000) in your browser and start cutting, merging, splitting and more on your PDFs!
 
 ## How to run from source
 
