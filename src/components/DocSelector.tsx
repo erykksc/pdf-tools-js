@@ -11,12 +11,14 @@ import {
 	updateDocSelector,
 } from "../redux/docSlice";
 import { useAppDispatch } from "../redux/store";
+import { useTranslation } from "react-i18next";
 
 export default function DocSelector(props: {
 	data: DocSelectorData;
 	onStartPageChange: (new_value?: number) => void;
 	onEndPageChange: (new_value?: number) => void;
 }) {
+	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
 	const { filename, startPage, endPage, pageCount, errorMsg } = props.data;
@@ -89,9 +91,25 @@ export default function DocSelector(props: {
 	return (
 		<>
 			<div
-				className={`text-black dark:text-white cursor-move grab flex items-center space-x-4 rounded px-3 py-2 ${errorMsg === undefined ? "bg-gray-100 dark:bg-gray-600" : "bg-red-300 dark:bg-red-400"}`}
+				className={`
+					text-black
+					dark:text-white
+					cursor-move
+					grab
+					flex
+					items-center
+					space-x-4
+					rounded
+					px-3
+					py-2
+					${errorMsg === undefined
+						? "bg-gray-100 dark:bg-gray-600"
+						: "bg-red-300 dark:bg-red-400"}
+					`}
 			>
-				<div>
+				<div
+					title={t("Drag to reorder")}
+				>
 					<MdOutlineDragIndicator size={20} />
 				</div>
 				<span className="grow w-full justify-center whitespace-normal break-all text-center">
@@ -102,7 +120,7 @@ export default function DocSelector(props: {
 						htmlFor="startPage"
 						className="block font-medium text-gray-700 dark:text-white text-xs"
 					>
-						Start page:
+						{t("Start page")}:
 					</label>
 					<input
 						type="number"
@@ -119,7 +137,7 @@ export default function DocSelector(props: {
 						htmlFor="endPage"
 						className="block font-medium text-gray-700 dark:text-white text-xs"
 					>
-						End page:
+						{t("End page")}:
 					</label>
 					<input
 						type="number"
@@ -131,7 +149,11 @@ export default function DocSelector(props: {
 						className="text-center dark:text-black w-20 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
 					/>
 				</div>
-				<button className="p-2 rounded" onClick={handleOnCopyClick}>
+				<button
+					className="p-2 rounded"
+					onClick={handleOnCopyClick}
+					title={t("Copy selector")}
+				>
 					<MdContentCopy size={20} />
 				</button>
 				<button
@@ -140,10 +162,11 @@ export default function DocSelector(props: {
 						(errorMsg !== undefined ? "dark:text-black" : "")
 					}
 					onClick={() => dispatch(removeDocSelector(props.data))}
+					title={t("Remove selector")}
 				>
 					<MdDeleteOutline size={25} />
-				</button>
-			</div>
+				</button >
+			</div >
 			<span className="flex justify-center text-sm">{errorMsg}</span>
 		</>
 	);

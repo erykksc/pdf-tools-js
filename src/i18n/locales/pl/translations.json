@@ -1,10 +1,16 @@
 {
-	"generatingPDF": "Generowanie pliku PDF...",
-	"combinePDFs": "Połącz PDFy",
+	"Change language": "Zmień język",
+	"Copy selector": "Skopiuj selektor",
+	"Drag to reorder": "Przeciągnij, aby zmienić kolejność",
+	"End page": "Strona końcowa",
+	"Remove selector": "Usuń selektor",
+	"Start page": "Strona początkowa",
 	"clear": "Wyczyść",
-	"startPage": "Pierwsza Strona",
-	"endPage": "Ostatnia Strona",
+	"combinePDFs": "Połącz PDFy",
+	"createdBy": "Stworzone przez",
 	"dropZone": "Drag 'n' drop PDF files here, or click to select files",
+	"endPage": "Ostatnia Strona",
+	"generatingPDF": "Generowanie pliku PDF...",
 	"onlyPDF": "Tylko pliki PDF są dozwolone",
-	"createdBy": "Stworzone przez"
+	"startPage": "Pierwsza Strona"
 }
