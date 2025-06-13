@@ -37,6 +37,10 @@ function App() {
 			{isGeneratingPDF && <LoadingOverlay />}
 			<main className="container mx-auto px-4 pt-10">
 				<div className="flex flex-col items-center">
+					{/* DROP ZONE */}
+					<DropZone />
+					<div className="pb-5" />
+
 					{/* SELECTORS */}
 					<List
 						values={pdf.selectors}
@@ -75,10 +79,6 @@ function App() {
 							</div>
 						)}
 					/>
-
-					{/* DROP ZONE */}
-					<DropZone />
-					<div className="pb-5" />
 
 					{/* COMBINE BUTTON */}
 					<PrimaryButton
