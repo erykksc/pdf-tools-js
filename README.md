@@ -13,17 +13,21 @@ git clone https://github.com/eroar/pdf-tools-js.git
 ```
 
 2. Install the dependencies:
+
 ```shell
 cd pdf-tools
 npm install
 ```
 
 3. Start the development server:
+
 ```shell
 npm run dev
 ```
+
 This will start the Vite development server and open the app in your default browser.
 
 ## License
 
 PDF Tools JS is licensed under [MIT License](./LICENSE.txt)
+
