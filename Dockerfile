@@ -5,7 +5,10 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
-COPY . .
+# Copy only necessary files to the build context
+COPY index.html *.json *.js *.ts ./
+COPY public/ public/
+COPY src/ src/
 RUN npm run build
 
 FROM nginx:alpine
