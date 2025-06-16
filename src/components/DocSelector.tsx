@@ -102,14 +102,14 @@ export default function DocSelector(props: {
 					rounded
 					px-3
 					py-2
-					${errorMsg === undefined
-						? "bg-gray-100 dark:bg-gray-600"
-						: "bg-red-300 dark:bg-red-400"}
+					${
+						errorMsg === undefined
+							? "bg-gray-100 dark:bg-gray-600"
+							: "bg-red-300 dark:bg-red-400"
+					}
 					`}
 			>
-				<div
-					title={t("Drag to reorder")}
-				>
+				<div title={t("Drag to reorder")}>
 					<MdOutlineDragIndicator size={20} />
 				</div>
 				<span className="grow w-full justify-center whitespace-normal break-all text-center">
@@ -165,8 +165,8 @@ export default function DocSelector(props: {
 					title={t("Remove selector")}
 				>
 					<MdDeleteOutline size={25} />
-				</button >
-			</div >
+				</button>
+			</div>
 			<span className="flex justify-center text-sm">{errorMsg}</span>
 		</>
 	);
