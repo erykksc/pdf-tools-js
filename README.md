@@ -15,6 +15,7 @@ Your files stay on the device!
 - ✂️ Split PDF files
 - 📄✅ Choose which pages to pick for merge
 - 📴 Offline (this app is just a pack of static frontend files)
+- 🌍 i18n support, supports both English and Polish language
 
 ## How to run using docker
 
