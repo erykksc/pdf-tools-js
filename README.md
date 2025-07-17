@@ -44,7 +44,7 @@ git clone https://github.com/eroar/pdf-tools-js.git
 2. Install the dependencies:
 
 ```shell
-cd pdf-tools
+cd pdf-tools-js
 npm install
 ```
 
