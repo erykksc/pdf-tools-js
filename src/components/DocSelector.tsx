@@ -119,8 +119,9 @@ export default function DocSelector(props: {
 					<label
 						htmlFor="startPage"
 						className="block font-medium text-gray-700 dark:text-white text-xs"
+						title={t("startPageTitle")}
 					>
-						{t("Start page")}:
+						{t("startPage")}:
 					</label>
 					<input
 						type="number"
@@ -136,8 +137,9 @@ export default function DocSelector(props: {
 					<label
 						htmlFor="endPage"
 						className="block font-medium text-gray-700 dark:text-white text-xs"
+						title={t("endPageTitle")}
 					>
-						{t("End page")}:
+						{t("endPage")}:
 					</label>
 					<input
 						type="number"

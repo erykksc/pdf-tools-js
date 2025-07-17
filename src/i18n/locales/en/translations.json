@@ -1,16 +1,16 @@
 {
 	"Change language": "Change language",
-	"Copy selector": "Copy selector",
+	"Copy selector": "Copy this selector",
 	"Drag to reorder": "Drag to reorder",
-	"End page": "End page",
-	"Remove selector": "Remove selector",
-	"Start page": "Start page",
+	"Remove selector": "Remove this selector",
 	"clear": "Clear",
 	"combinePDFs": "Combine PDFs",
 	"createdBy": "Created by",
 	"dropZone": "Drag 'n' drop PDF files here, or click to select files",
-	"endPage": "End Page",
 	"generatingPDF": "Generating PDF...",
 	"onlyPDF": "Only PDF files are allowed",
-	"startPage": "Start Page"
+	"startPage": "Start Page",
+	"startPageTitle": "The pages of the selected PDF will be included starting from this page number (inclusive). By default the first page will be selected",
+	"endPage": "End Page",
+	"endPageTitle": "The pages of the selected PDF will be included until this page number (inclusive). By default the last page of the PDF will be selected."
 }

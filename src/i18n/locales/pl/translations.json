@@ -1,16 +1,16 @@
 {
 	"Change language": "Zmień język",
-	"Copy selector": "Skopiuj selektor",
+	"Copy selector": "Skopiuj ten selektor",
 	"Drag to reorder": "Przeciągnij, aby zmienić kolejność",
-	"End page": "Strona końcowa",
-	"Remove selector": "Usuń selektor",
-	"Start page": "Strona początkowa",
+	"Remove selector": "Usuń ten selektor",
 	"clear": "Wyczyść",
 	"combinePDFs": "Połącz PDFy",
 	"createdBy": "Stworzone przez",
 	"dropZone": "Przeciągnij i upuść pliki PDF tutaj, lub kliknij, aby je wybrać",
-	"endPage": "Ostatnia Strona",
 	"generatingPDF": "Generowanie pliku PDF...",
 	"onlyPDF": "Tylko pliki PDF są dozwolone",
-	"startPage": "Pierwsza Strona"
+	"startPage": "Pierwsza Strona",
+	"startPageTitle": "Strona od której program skopiuje wybrany plik PDF (włącznie z tą stroną). Domyślnie PDF będzie wybrany od pierwszej strony",
+	"endPage": "Ostatnia Strona",
+	"endPageTitle": "Strony wybranego PDFa będą dodane do tej strony (włącznie z tą stroną). Domyślnie PDF będzie wybrany do ostatniej strony."
 }
