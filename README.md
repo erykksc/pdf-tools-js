@@ -1,7 +1,7 @@
 # PDF Tools JS
 
 Tool is available at
-[https://erykksc.github.io/pdf-tools-js](https://erykksc.github.io/pdf-tools-js)
+[pdftoolsjs.eryk.one](https://pdftoolsjs.eryk.one)
 
 PDF Tools JS is a web app built with React and Vite that allows you to merge, cut, and join PDF files.
 It uses the [pdf-lib](https://github.com/Hopding/pdf-lib) library to manipulate PDF files in the browser.
@@ -14,8 +14,12 @@ Your files stay on the device!
 - 📎 Merge many PDF files
 - ✂️ Split PDF files
 - 📄✅ Choose which pages to pick for merge
+- 🔒 Privacy respecting (this whole app runs on your machine, the PDFs are not uploaded anywhere)
 - 📴 Offline (this app is just a pack of static frontend files)
+- ⚡ Lightning fast, as everything happens on your computer, no waiting for uploads and downloads to finish
 - 🌍 i18n support, supports both English and Polish language
+
+![PDF Tools JS Screenshot](./readme-resources/pdftoolsjs-screenshot.png)
 
 ## How to run using docker
 
