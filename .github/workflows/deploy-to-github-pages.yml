@@ -38,7 +38,7 @@ jobs:
               run: npm run build
 
             - name: Add CNAME file
-              run: echo "pdftoolsjs.eryk.one" > dist/CNAME
+              run: echo "pdf.eryk.one" > dist/CNAME
 
             - name: Setup GitHub Pages
               uses: actions/configure-pages@v5
